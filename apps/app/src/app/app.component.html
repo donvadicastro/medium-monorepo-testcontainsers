@@ -6,4 +6,18 @@
     alt="Nx - Smart, Fast and Extensible Build System"
   />
 </div>
-<div>Message: {{ hello$ | async | json }}</div>
+<div class="container">
+  <h2>Registered users</h2>
+  <table class="table table-bordered">
+    <tr>
+      <th>FirstName</th>
+      <th>LastName</th>
+      <th>Active</th>
+    </tr>
+    <tr *ngFor="let user of users$ | async">
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.isActive ? 'YES' : 'NO' }}</td>
+    </tr>
+  </table>
+</div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@testcontainers/api-interfaces';
+import { User } from './user.type';
 
 @Component({
   selector: 'testcontainers-root',
@@ -8,6 +8,6 @@ import { Message } from '@testcontainers/api-interfaces';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  hello$ = this.http.get<Message>('/api/hello');
+  users$ = this.http.get<User[]>('/api/users');
   constructor(private http: HttpClient) {}
 }
