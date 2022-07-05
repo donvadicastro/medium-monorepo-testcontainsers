@@ -13,4 +13,5 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/apps/api',
+  globalSetup: '<rootDir>/tests/globalSetup.ts'
 };
