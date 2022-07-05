@@ -15,11 +15,13 @@ module.exports = async () => {
 
     const apiContainer = await apiContainerBuilder
         .withExposedPorts(3333)
-        .withCopyFileToContainer(path.resolve(__dirname, '../../../dist/apps/api/main.js'), "/api/main.js")
+        .withBindMount(path.resolve(__dirname, '../../../dist/apps/api'), "/api")
         .withEnv('DATABASE_HOST', postgresContainer.getIpAddress('bridge'))
         .withEnv("DATABASE_USERNAME", "test")
         .withEnv("DATABASE_PASSWORD", "test")
         .start();
 
-    process.env.API_URL = `http://localhost:${apiContainer.getMappedPort(3000)}`;
+
+
+    process.env.API_URL = `http://localhost:${apiContainer.getMappedPort(3333)}`;
 };
