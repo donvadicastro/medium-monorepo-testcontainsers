@@ -1,6 +1,6 @@
 const request = require("supertest");
 
-describe('Complete E2E tests', () => {
+describe('Complete E2E API tests', () => {
     it('Check message', async () => {
         const API = request(process.env['API_URL']);
         const response = await API.get('/api/hello').expect(200);
