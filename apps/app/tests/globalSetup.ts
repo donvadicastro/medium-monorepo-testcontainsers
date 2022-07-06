@@ -10,7 +10,7 @@ module.exports = async () => {
         .withEnv("POSTGRES_DB", "medium_monorepo_testcontainsers")
         .start();
 
-    const apiContainerBuilder = await GenericContainer.fromDockerfile(path.resolve(__dirname))
+    const apiContainerBuilder = await GenericContainer.fromDockerfile(path.resolve(__dirname, '../../api/tests'))
         .build();
 
     const apiContainer = await apiContainerBuilder
@@ -21,6 +21,14 @@ module.exports = async () => {
         .withEnv("DATABASE_PASSWORD", "test")
         .start();
 
+    const appContainerBuilder = await GenericContainer.fromDockerfile(path.resolve(__dirname))
+        .build();
+
+    const appContainer = await appContainerBuilder
+        .withExposedPorts(3333)
+        .withBindMount(path.resolve(__dirname, '../../../dist/apps/app'), "/usr/share/nginx/html")
+        .start();
 
     process.env['API_URL'] = `http://localhost:${apiContainer.getMappedPort(3333)}`;
+    process.env['APP_URL'] = `http://localhost:${appContainer.getMappedPort(80)}`;
 };

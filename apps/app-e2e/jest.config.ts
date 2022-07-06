@@ -12,5 +12,6 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/api'
+  coverageDirectory: '../../coverage/apps/api',
+  globalSetup: '<rootDir>/tests/globalSetup.ts'
 };

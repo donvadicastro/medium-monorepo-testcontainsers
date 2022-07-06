@@ -7,7 +7,7 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
     "start": "nx serve",
     "build": "nx run-many --all --target=build",
-    "test": "cross-env DEBUG=testcontainers* nx test",
+    "test": "cross-env DEBUG=testcontainers* nx run-many --all --target=test",
     "e2e": "cross-env DEBUG=testcontainers* nx run app-e2e:e2e"
   },
   "private": true,
