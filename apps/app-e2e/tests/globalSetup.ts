@@ -26,6 +26,21 @@ module.exports = async () => {
 
     const appContainer = await appContainerBuilder
         .withExposedPorts(80)
+        .withCopyContentToContainer(
+            `server {
+                listen       80;
+                listen  [::]:80;
+                server_name  localhost;
+            
+                location / { 
+                    root   /usr/share/nginx/html;
+                    index  index.html index.htm;
+                }
+
+                location /api { 
+                    proxy_pass http://${apiContainer.getIpAddress('bridge')}:3333/api; 
+                }
+            }`, "/etc/nginx/conf.d/api.conf")
         .withBindMount(path.resolve(__dirname, '../../../dist/apps/app'), "/usr/share/nginx/html")
         .start();
 

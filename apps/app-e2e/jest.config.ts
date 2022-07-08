@@ -1,7 +1,7 @@
 /* eslint-disable */
 export default {
   displayName: 'api',
-  preset: '../../jest.preset.js',
+  preset: 'jest-puppeteer',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
