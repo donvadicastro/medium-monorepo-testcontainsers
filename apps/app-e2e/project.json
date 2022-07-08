@@ -17,6 +17,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
+      "dependsOn": [{ "projects": "dependencies", "target": "build"}],
       "options": {
         "jestConfig": "apps/app-e2e/jest.config.ts",
         "passWithNoTests": true
@@ -31,5 +32,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["app"]
+  "implicitDependencies": ["api", "app"]
 }
